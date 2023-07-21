@@ -22,7 +22,7 @@ void print_diagonal(int n)
 		{
 			for (y = 0; y < x; y++)
 			{
-				putchar(12);
+				putchar(32);
 			}
 			putchar(02);
 			putchar('\n');
