@@ -24,12 +24,22 @@ size_t print_listint(const listint_t *h)
 	}
 	return (count);
 }
+
+/**
+ * main - Entry point.
+ *
+ * Description: Creates a linked list of integer and prints it's elements.
+ *
+ * Return: Always 0.
+ */
+
 int main(void)
 {
 	listint_t *head = NULL;
 	listint_t *new_node, *temp;
 	size_t n;
 	size_t i = 15;
+
 	while (i > 0)
 	{
 		new_node = malloc(sizeof(listint_t));
