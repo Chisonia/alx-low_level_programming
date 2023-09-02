@@ -3,10 +3,10 @@
 #include <string.h>
 
 /**
- * int binary_to_uint - converts binary number to an unsigned integer.
+ * binary_to_uint - converts binary number to an unsigned integer.
  * @b:pointer to string of 0 and 1 char.
  *
- * Return: the converted number, or 0 if there is one or more chars in the string b that is not 0 or 1 b is NULL.
+ * Return: the converted number, or 0 if not 0 or 1
  */
 
 unsigned int binary_to_uint(const char *b)
@@ -22,7 +22,7 @@ unsigned int binary_to_uint(const char *b)
 		if (b[i] < '0' || b[i] > '1')
 			return (0);
 
-		value = 2 * value + (b[i] -'0');
+		value = 2 * value + (b[i] - '0');
 	}
 
 	return (value);
