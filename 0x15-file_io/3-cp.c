@@ -14,8 +14,6 @@ void error_handler(int exit_code, const char *exit_message, const char *arg)
 	dprintf(STDERR_FILENO, exit_message, arg);
 	exit(exit_code);
 }
-
-
 /**
  * main - Entry point for the file copy program.
  *
@@ -23,9 +21,9 @@ void error_handler(int exit_code, const char *exit_message, const char *arg)
  * @argv: An array of strings containing the command_line arguments.
  *
  * Return: 0 on success, or an error code (97-100) on failure
- * with corresponding error messages.
+ * with the corresponding error messages.
  */
-int main(int argc, char *argv[])
+int  main(int argc, char *argv[])
 {
 	const char *file_from, *file_to;
 	char buffer[1024];
@@ -36,18 +34,20 @@ int main(int argc, char *argv[])
 	{
 		error_handler(97, "Usage: cp file_from file_to\n", "");
 	}
+
 	file_from = argv[1];
 	file_to = argv[2];
 
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
 	{
-		error_handler(98, "Error: Can't read from file %s\n", file_from);
+		error_handler(98, "Error: Can'r read from file %\n", file_from);
 	}
-	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+
+	fd_to = open(file_to, O_WRONLY |O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
-		error_handler(99, "Error: Can't write to %s\n", file_to);
+		error_handler(99,"Error: Can't write to %s\n", file_to);
 	}
 	while ((bytes_read = read(fd_from, buffer, sizeof(buffer))) > 0)
 	{
@@ -57,17 +57,13 @@ int main(int argc, char *argv[])
 			error_handler(99, "Error: Can't write to %s\n", file_to);
 		}
 	}
-		if (bytes_read == -1)
-		{
-			error_handler(98, "Error: Can't read from file %s\n", file_from);
-		}
-		if (close(fd_from) == -1 || close(fd_to) == -1)
-		{
-			error_handler(100, "Error: Can't close fd\n", "");
-		}
-			if (chmod(file_to, 0664) == -1)
-			{
-				error_handler(100, "Error: Can't set permissions on %s\n", file_to);
-		}
-		return (0);
+	if (bytes_read == -1)
+	{
+		error_handler(98, "Error: Can't read from file %s\n", file_from);
+	}
+	if (close(fd_from) == 1 || close(fd_to) == -1)
+	{
+		error_handler(100, "Error: Can't close fd\n", "");
+	}
+	return (0);
 }
