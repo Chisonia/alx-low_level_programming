@@ -11,6 +11,23 @@ void er_h(int exit_code, const char *exit_message, const char *arg)
 	exit(exit_code);
 }
 /**
+ * cl_f - Closes a file descriptor and handles errors.
+ * @fd: The file descriptor to be closed.
+ * @filename: The name of the file associated with the descriptor.
+ *
+ * Return: 0 on success, -1 on failure.
+ */
+int cl_f(int fd, const char *filename)
+{
+	if (close(fd) == -1)
+	{
+		dprintf(STDERR_FILENO,
+"Error: Can't close fd for %s: %s\n", filename, strerror(errno));
+		return (-1);
+	}
+	return (0);
+}
+/**
  * main - Entry point for the file copy program.
  * @argc: The number of command_line arguments.
  * @argv: An array of strings containing the command_line arguments.
@@ -34,7 +51,7 @@ int  main(int argc, char *argv[])
 	{
 		er_h(98, "Error: Can't read from file %\n", file_from);
 	}
-	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	fd_to = open(file_to, O_WRONLY | O_CREAT | O_APPEND, 0664);
 	if (fd_to == -1)
 	{
 		er_h(99, "Error: Can't write to %s\n", file_to);
@@ -51,12 +68,9 @@ int  main(int argc, char *argv[])
 	{
 		er_h(98, "Error: Can't read from file %s\n", file_from);
 	}
-	if (close(fd_from) == -1)
+	if (cl_f(fd_from, file_from) == -1 || cl_f(fd_to, file_to) == -1)
 	{
-	er_h(100, "Error: Can't close fd for %s: %s\n", file_from);
+		er_h(100, "Error: Cab't close fd\n", "");
 	}
-	if (close(fd_to) == -1)
-	{
-		er_h(100, "Error: Can't close fd for %s: %s\n", file_to);
-	} return (0);
+	return (0);
 }
