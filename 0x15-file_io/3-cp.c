@@ -21,8 +21,8 @@ int cl_f(int fd, const char *filename)
 {
 	if (close(fd) == -1)
 	{
-		dprintf(STDERR_FILENO,
-"Error: Can't close fd for %s: %s\n", filename, strerror(errno));
+		dprintf(STDERR_FILENO, "Error: Can't close fd for %s: %s\n",
+filename, strerror(errno));
 		return (-1);
 	}
 	return (0);
@@ -70,7 +70,7 @@ int  main(int argc, char *argv[])
 	}
 	if (cl_f(fd_from, file_from) == -1 || cl_f(fd_to, file_to) == -1)
 	{
-		er_h(100, "Error: Cab't close fd\n", "");
+		er_h(100, "Error: Can't close fd %s\n", "");
 	}
 	return (0);
 }
