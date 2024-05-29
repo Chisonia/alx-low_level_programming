@@ -1,7 +1,21 @@
+.PHONY: all clean
+
+# Variables
 CC = gcc
-SRC = $(*.c)
+SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 
-all: ${OBJ}
-    ${CC} ${CC} -o ${NAME}    
+# Default target
+all: $(NAME)
+
+# Link object files to create the executable
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+# Compile .c files to .o files
+%.o: %.c
+	$(CC) -c $< -o $@
+
+clean:
+	rm -f $(OBJ) $(NAME)

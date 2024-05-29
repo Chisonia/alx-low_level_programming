@@ -1,5 +1,11 @@
-CC = gcc
-SRC = $(*.c)
+.PHONY: all
 
-all: ${SRC}
-    ${CC} ${CC} -o school    
+# Variables
+CC = gcc
+SRC = main.c school.c
+
+all: school
+
+# Link object files to create the executable
+school: $(OBJ)
+	$(CC) ${SRC} -o school
