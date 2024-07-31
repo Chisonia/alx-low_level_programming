@@ -2,7 +2,7 @@
 
 /**
  * hash_table_delete - Deletes a hash table
- * @ht: Pointer to hash table
+ * @ht: Hash table Pointer
  * Return: Void
  */
 void hash_table_delete(hash_table_t *ht)

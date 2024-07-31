@@ -1,10 +1,10 @@
 #include "hash_tables.h"
 
 /**
- * key_index - this functions returns the index number of a key
- * @key: pointer to the key
+ * key_index - A functions that returns the index number of a key
+ * @key: key pointer
  * @size: size of the array
- * Return: return the index
+ * Return: returns the index
  */
 
 unsigned long int key_index(const unsigned char *key, unsigned long int size)
