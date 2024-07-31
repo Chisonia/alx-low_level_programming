@@ -3,7 +3,7 @@
 /**
  * hash_table_get - Retrieves a value associated with a key
  * @ht:  Hash table Pointer
- * @key: Key Pointer 
+ * @key: Key Pointer
  * Return: value if key is found and null if otherwise
  */
 char *hash_table_get(const hash_table_t *ht, const char *key)
@@ -31,6 +31,5 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 		}
 		current = current->next;
 	}
-
 	return (NULL);
 }
